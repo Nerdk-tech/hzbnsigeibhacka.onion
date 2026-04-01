@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TERMINAL_SESSION_v2.1.0_UNSTABLE</title>
+    <style>
+        :root {
+            --glow: #00ff41;
+            --dark: #050505;
+            --blood: #bc0000;
+            --low-gray: #444;
+            --void: #000;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--glow);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            min-height: 100vh;
+            background-image: radial-gradient(circle, #1a0000 0%, #050505 100%);
+        }
+
+        #login-screen, #main-content {
+            width: 100%;
+            max-width: 950px;
+            border: 2px solid var(--blood);
+            padding: 40px;
+            box-shadow: 0 0 50px rgba(188, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.98);
+        }
+
+        .hidden { display: none; }
+        h1, h2, h3 { text-transform: uppercase; letter-spacing: 4px; color: var(--blood); border-bottom: 1px solid #300; padding-bottom: 10px; }
+        
+        .warning-text { color: white; background: var(--blood); padding: 5px; font-weight: bold; text-align: center; margin-bottom: 20px; animation: flash 0.5s infinite; }
+
+        input, textarea {
+            background: #000;
+            border: 1px solid var(--blood);
+            color: var(--blood);
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+        }
+
+        button {
+            background: var(--blood);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        /* News Section */
+        .news-container { margin: 30px 0; }
+        .news-card {
+            border-left: 4px solid var(--blood);
+            padding: 15px;
+            margin-bottom: 20px;
+            background: #0a0a0a;
+            transition: 0.3s;
+        }
+        .news-card:hover { background: #1a0000; }
+        .tag { color: #ff0000; font-weight: bold; font-size: 0.8em; text-decoration: underline; }
+
+        /* Surveillance Section */
+        .surveillance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .map-sim {
+            height: 150px;
+            background: black;
+            border: 1px solid #333;
+            padding: 10px;
+            font-size: 0.75em;
+            position: relative;
+        }
+        .map-sim .status { color: red; animation: blink 0.8s infinite; }
+
+        /* Comment Section */
+        #comment-board {
+            height: 400px;
+            overflow-y: scroll;
+            border: 1px solid #222;
+            padding: 15px;
+            background: #020202;
+            margin-bottom: 15px;
+        }
+        .comment {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #080808;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .comment b { color: #ff4d4d; }
+        .comment p { margin: 5px 0; color: #aaa; }
+        .market-item { color: #ffd700 !important; font-weight: bold; }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 1.5em;
+            color: var(--blood);
+            letter-spacing: 10px;
+            border-top: 2px solid var(--blood);
+            padding-top: 20px;
+        }
+
+        @keyframes flash { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <div id="login-screen">
+        <div class="warning-text">UNAUTHORIZED ACCESS IS A FEDERAL OFFENSE</div>
+        <h2>SYSTEM_ENTRY</h2>
+        <p>> Identity Hash:</p>
+        <input type="password" id="pass" placeholder="Enter Ghost Key">
+        <p>> Initialize Payload:</p>
+        <textarea id="bash" rows="3" placeholder="run exploit/multi/handler..."></textarea>
+        <button onclick="login()">ENTER THE VOID</button>
+    </div>
+
+    <div id="main-content" class="hidden">
+        <h1>Welcome Dark Dev</h1>
+        <p>> Proxy: <span id="session-id"></span> | Location: <span style="color:red">SATELLITE_MASKED</span></p>
+
+        <div class="news-container">
+            <h2>Intel Feed</h2>
+            
+            <div class="news-card">
+                <span class="tag">[DEATH_REPORT]</span>
+                <h3>Target #9921: TERMINATED</h3>
+                <p>The whistleblower from the 2025 data leak was found in a suburban hotel. No forensic evidence left. Files recovered: 0. Operation complete. We killed her well.</p>
+            </div>
+
+            <div class="news-card">
+                <span class="tag">[CRITICAL]</span>
+                <h3>STERLING BANK: PHASE 2</h3>
+                <p>The attackers have released the private keys for the bank's internal vault. Global markets are reacting to the total loss of 4.2 Billion USD in digital assets. Total chaos in the streets.</p>
+            </div>
+
+            <div class="news-card">
+                <span class="tag">[MASS_HACK]</span>
+                <h3>300M WEBCAMS HIJACKED</h3>
+                <p>A new zero-day exploit has successfully turned on 300 million laptop cameras. The footage is being streamed to the "Private Spectator" servers. Check your lens—is the light on?</p>
+            </div>
+
+            <div class="news-card">
+                <span class="tag">[LEAK]</span>
+                <h3>EPSTEIN: THE FINAL NAMES</h3>
+                <p>The final 200 names from the island's flight logs have been published. Three world leaders have resigned within the last hour. The server is currently under heavy DDoS attack.</p>
+            </div>
+
+            <div class="news-card">
+                <span class="tag">[CREEPY]</span>
+                <h3>THE BLACKOUT VIRUS</h3>
+                <p>A self-replicating worm has entered the power grid of Northern Europe. Hospitals are running on backup generators. Total darkness expected by midnight.</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>Live Field Surveillance</h2>
+        <div class="surveillance-grid">
+            <div class="map-sim">
+                <p><b>ID: 882-Alpha</b></p>
+                <p>Loc: Lagos, NG</p>
+                <p class="status">STATUS: BROWSING_HISTORY_READ</p>
+            </div>
+            <div class="map-sim">
+                <p><b>ID: 112-Beta</b></p>
+                <p>Loc: New York, US</p>
+                <p class="status">STATUS: SMART_LOCK_DISABLED</p>
+            </div>
+            <div class="map-sim">
+                <p><b>ID: 449-Gamma</b></p>
+                <p>Loc: Kiev, UA</p>
+                <p class="status">STATUS: VOICE_REC_ACTIVE</p>
+            </div>
+            <div class="map-sim">
+                <p><b>ID: 002-Omega</b></p>
+                <p>Loc: Unknown</p>
+                <p class="status">STATUS: TRACKING_STRAY_SIGNAL</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>Shadow Thoughts (/market/black)</h2>
+        <div id="comment-board">
+            <div class="comment"><b>Reaper_X:</b> <span class="market-item">GUNS FOR SALE.</span> Glock 17, untraceable. DM my bash code to purchase. Shipping via drone.</div>
+            <div class="comment"><b>Ghost_In_The_Shell:</b> Sterling Bank is just the start. The whole grid is weak.</div>
+            <div class="comment"><b>Skull_Bones:</b> Anyone need a fresh identity? Full UK passport + credit history. $2000 BTC.</div>
+            <div class="comment"><b>Anon_Lagos:</b> I just saw the camera feed from the girl next door. This is too easy.</div>
+            <div class="comment"><b>Shadow_Broker:</b> Buying all data related to the Epstein logs. No limit on price.</div>
+            <div class="comment"><b>Root_Access:</b> I just bricked 500 iPhones in a coffee shop for fun. Who's next?</div>
+            <div class="comment"><b>Snake_Eye:</b> <span class="market-item">MALWARE FOR HIRE.</span> Ransomware as a service. 20% commission on all payouts.</div>
+        </div>
+        
+        <input type="text" id="user-comment" placeholder="Type a message to the underworld...">
+        <button onclick="addComment()">SEND TO BLACK_BOARD</button>
+
+        <div class="footer-note">
+            THAT'S ALL FOR TODAY.<br>
+            SEE YOU IN HELL.
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('session-id').innerText = "NODE_" + Math.random().toString(36).toUpperCase().substring(2, 10);
+
+        function login() {
+            const pass = document.getElementById('pass').value;
+            if(pass !== "") {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('main-content').classList.remove('hidden');
+            } else {
+                alert("CRITICAL ERROR: IDENTITY REJECTED");
+            }
+        }
+
+        function addComment() {
+            const input = document.getElementById('user-comment');
+            if(input.value.trim() !== "") {
+                const board = document.getElementById('comment-board');
+                const div = document.createElement('div');
+                div.className = 'comment';
+                div.innerHTML = `<b>Dark_Dev:</b> <p>${input.value}</p>`;
+                board.prepend(div);
+                input.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
+
